@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
   
 <!-- 指定工作空间，要与接口名相同，源代码没有去看，猜测应该是通过"这里的namespace.下边方法的id"来定位方法的 -->  
-<mapper namespace="smm.springboot_ftl.mapper.UserMapper">  
+<mapper namespace="smm.springboot_ftl.mapper.UserMapper">
 
 	<!-- insert user -->
 	<insert id = "insert" parameterType="smm.springboot_ftl.bean.User">
@@ -16,7 +16,8 @@
 	
 	<!-- find user -->
 	<select id="find" parameterType="int" resultType="smm.springboot_ftl.bean.User">
-		SELECT ID,USERNAME,PASSWORD,AGE FROM USER WHERE ID=#{0}
+		SELECT id,username,passworld,age
+ FROM user WHERE id=#{id}
 	</select>
 	
 	<!-- delete user -->

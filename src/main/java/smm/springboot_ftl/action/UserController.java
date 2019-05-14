@@ -37,7 +37,7 @@ import smm.springboot_ftl.service.UserService;
  * @author Administrator
  *
  */
-@RestController
+@Controller
 @ComponentScan({"smm.springboot_ftl.service"})
 @MapperScan("smm.springboot_ftl.mapper")
 public class UserController {
@@ -52,7 +52,7 @@ public class UserController {
 	
 	@RequestMapping("/find")
 	public String find(){
-		User user =  userService.find(18);
+		User user =  userService.find(1);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("user","sadf");
 		return "HelloWord"+"fasdf--"+user.getUsername()+"--"+user.getPassword();
@@ -62,6 +62,11 @@ public class UserController {
 	@RequestMapping("/ajax")
 	public String find1(){
 		return "[''message':'123dfx']";
+	}
+
+	@RequestMapping("/test")
+	public String test(){
+		return "a";
 	}
 	
 //	public static void main(String[] args){
