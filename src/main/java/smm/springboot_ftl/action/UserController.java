@@ -1,6 +1,6 @@
 package smm.springboot_ftl.action;
 
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Resource;
 
@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,6 +41,7 @@ import smm.springboot_ftl.service.UserService;
 @Controller
 @ComponentScan({"smm.springboot_ftl.service"})
 @MapperScan("smm.springboot_ftl.mapper")
+@RequestMapping("/map")
 public class UserController {
 	
 	@Resource
@@ -64,12 +66,77 @@ public class UserController {
 		return "[''message':'123dfx']";
 	}
 
-	@RequestMapping("/test")
-	public String test(){
-		return "a";
+	@RequestMapping("/addMapUI")
+	public String addMapUI(){
+	 	return "add";
 	}
-	
-//	public static void main(String[] args){
-//		SpringApplication.run(UserController.class,args);
-//	}
+
+	@RequestMapping(value = "/addMap",produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addMap(String lng ,String lat,String color,String address,String department,String num,String group){
+	 	HashMap<String ,Object> map=new HashMap<>();
+	 	map.put("department",department);
+		map.put("lng",lng);
+		map.put("lat",lat);
+		map.put("address","1");
+		map.put("color",color);
+		map.put("createDate",new Date());
+		map.put("state","1");
+		map.put("num",num);
+		map.put("group",group);
+		userService.addMap(map);
+		return "success";
+	}
+
+
+	@RequestMapping("/findMapUI")
+	public String findMapUI(){
+		return "list";
+	}
+
+	@RequestMapping("/findMap")
+	@ResponseBody
+	public List<HashMap> findMap(String address,String department){
+		HashMap<String ,Object> map=new HashMap<>();
+		map.put("department",department);
+		map.put("address",address);
+		map.put("state","1");
+		List<HashMap> listMap=userService.findMap(map);
+		return listMap;
+	}
+	@RequestMapping("/findMark")
+	@ResponseBody
+	public List<HashMap> findMark(String department){
+		HashMap<String ,Object> mark=new HashMap<>();
+		mark.put("department",department);
+		List<HashMap> listMark=userService.findMark(mark);
+		System.err.println(listMark);
+		return listMark;
+	}
+
+	@RequestMapping("/findDepart")
+	@ResponseBody
+	public List<String> findDepart(String department){
+		HashMap<String ,Object> map=new HashMap<>();
+		map.put("department",department);
+		List<String> listMap=userService.findDepart(map);
+		return listMap;
+	}
+	@RequestMapping("/findMaps")
+	@ResponseBody
+	public List<List<HashMap>> findMaps(String address,String department){
+	 	List list=new ArrayList();
+		HashMap<String ,Object> map=new HashMap<>();
+		map.put("department",department);
+		List<String> listMap=userService.findGroupBy(map);
+		for (String groupBy:listMap){
+			map.put("groupBy",groupBy);
+			List<HashMap> listMap1=userService.findMap(map);
+			list.add(listMap1);
+		}
+		System.err.println(list);
+
+		return list;
+	}
+
 }

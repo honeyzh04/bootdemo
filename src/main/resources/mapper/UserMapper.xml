@@ -24,4 +24,60 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM USER WHERE ID=#{0}
 	</delete>
+	<insert id = "addMap" >
+		INSERT INTO proj_map  VALUES(
+		null,
+		#{address},
+		#{department},
+		#{lng},
+		#{lat},
+		#{color},
+		#{state},
+		#{num},
+		#{group},
+		#{createDate}
+);
+	</insert>
+	<select id="findMap" resultType="java.util.HashMap">
+		SELECT * FROM proj_map where
+		1=1
+		<if test="department != null and department != '' ">
+			AND department=#{department}
+		</if>
+		<if test="groupBy != null and groupBy != '' ">
+			AND groupBy=#{groupBy}
+		</if>
+		<if test="state != null and state != '' ">
+			AND state=#{state}
+		</if>
+        ORDER BY num ASC
+	</select>
+
+    <select id="findDepart"  resultType="java.lang.String">
+        SELECT department FROM proj_map
+        where 1=1
+        <if test="department != null and department != '' ">
+            AND department=#{department}
+        </if>
+        GROUP BY department
+    </select>
+
+	<select id="findMark"  resultType="java.util.HashMap">
+		SELECT * FROM proj_map
+		where num=2
+		<if test="department != null and department != '' ">
+			AND department=#{department}
+		</if>
+		GROUP BY groupBy
+	</select>
+
+    <select id="findGroupBy"  resultType="java.lang.String">
+        SELECT groupBy FROM proj_map
+        where 1=1
+        <if test="department != null and department != '' ">
+            AND department=#{department}
+        </if>
+        GROUP BY groupBy
+    </select>
+
 </mapper>
