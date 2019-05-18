@@ -37,8 +37,8 @@
     <!--加载检索信息窗口-->
     <script type="text/javascript" src="https://api.map.baidu.com/library/SearchInfoWindow/1.4/src/SearchInfoWindow_min.js"></script>
     <!--bootstrap-->
-    <script src="../js/bootstrap.min.js"></script>
-    <link  rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--颜色选择器-->
     <script src="../js/colpick.js"></script>
     <link  rel="stylesheet" href="../css/colpick.css">

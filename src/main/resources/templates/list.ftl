@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="https://api.map.baidu.com/library/SearchInfoWindow/1.4/src/SearchInfoWindow_min.css" />
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!--bootstrap-->
-    <script src="../js/bootstrap.min.js"></script>
-    <link  rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <title>共和县营销及维护</title>
 </head>
 <body>
