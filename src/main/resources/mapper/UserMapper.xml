@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
   
 <!-- 指定工作空间，要与接口名相同，源代码没有去看，猜测应该是通过"这里的namespace.下边方法的id"来定位方法的 -->  
-<mapper namespace="smm.springboot_ftl.mapper.UserMapper">
+<mapper namespace="smm.springboot_ftl.mapper.MapMapper">
 
 	<!-- insert user -->
 	<insert id = "insert" parameterType="smm.springboot_ftl.bean.User">
@@ -41,9 +41,6 @@
 	<select id="findMap" resultType="java.util.HashMap">
 		SELECT * FROM proj_map where
 		1=1
-		<if test="department != null and department != '' ">
-			AND department=#{department}
-		</if>
 		<if test="groupBy != null and groupBy != '' ">
 			AND groupBy=#{groupBy}
 		</if>
@@ -66,7 +63,8 @@
 		SELECT * FROM proj_map
 		where num=2
 		<if test="department != null and department != '' ">
-			AND department=#{department}
+			AND  department LIKE
+			CONCAT(CONCAT('%',#{department}),'%')
 		</if>
 		GROUP BY groupBy
 	</select>
@@ -75,7 +73,8 @@
         SELECT groupBy FROM proj_map
         where 1=1
         <if test="department != null and department != '' ">
-            AND department=#{department}
+			AND  department LIKE
+			CONCAT(CONCAT('%',#{department}),'%')
         </if>
         GROUP BY groupBy
     </select>

@@ -6,10 +6,17 @@
     <style type="text/css">
         body, html,#allmap {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
         #l-map{height:100%;width:100%;}
-        .control{
+        .control {
             width: 100%;
-            top:30px;
-            left:50px;
+            top: 1%;
+            left: 17%;
+            position: absolute;
+            z-index: 9999;
+            BACKGROUND-COLOR: transparent;
+        }
+        #images{
+            bottom:1%;
+            right:1%;
             position:absolute;
             z-index:9999;
             BACKGROUND-COLOR: transparent;
@@ -24,7 +31,8 @@
     <!--bootstrap-->
     <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <title>共和县营销及维护</title>
+
+    <title>共和农商银行营销与维护</title>
 </head>
 <body>
 
@@ -33,16 +41,13 @@
 </div>
 <div class="control">
         <div class="row">
-            <input type="text" class="col-md-10 form-control"  style="width: 80%" id="department" placeholder="请输入管理部门名字">
-            <button type="button" class="btn btn-primary col-md-2 text-right" >搜索</button>
+            <input type="text" class="col-md-7 form-control"   id="department" placeholder="请输入管理部门名字">
+            <button type="button" class="btn btn-primary col-md-2 text-left" onclick="search()" >搜索</button>
         </div>
 </div>
 </div>
-<div id="r-result">
-    <div class="center-block">
-    <input type="button" onclick="showOver()" value="显示" />
-    <input type="button" onclick="hideOver()" value="隐藏" />
-        </div>
+<div>
+    <img src="../img/bank/bank.png" id="images" width="75" height="75" />
 </div>
 </body>
 </html>
@@ -89,11 +94,20 @@
     });
     map.addControl(geolocationControl);
 
+    function search() {
+        console.log("search")
+        clearAll();
+        findMap();
+        findMark();
+    }
+    //删除路线
+    function clearAll() {
+        map.clearOverlays();
 
+    }
     var  lng1="";
     var  lat1="";
     function findMap(){
-        var color=$('#color option:selected') .val();
         var department=$("#department").val();
         $.ajax({
             url:"../map/findMaps",
@@ -141,10 +155,9 @@
                     label.setStyle({
 
                         color : "#9900ff", //字体颜色
-                        fontSize : "16px",//字体大小 　　
+                        fontSize : "12px",//字体大小 　　
                         backgroundColor :"0.05", //文本标注背景颜色　
                         border :"0",
-
                         fontWeight :"bold" //字体加粗
 
                     });
@@ -160,11 +173,11 @@
 
 
 
-
+/*
     function showOver(){
         marker.show(); polyline.show();
     }
     function hideOver(){
         marker.hide(); polyline.hide();
-    }
+    }*/
 </script>
